@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.getElementById("navMenu");
 
   if (navToggle && navMenu) {
-    // Menü auf/zuklappen auf Mobilgeräten
+
     navToggle.addEventListener("click", () => {
       navMenu.classList.toggle("active");
       navToggle.classList.toggle("active");
