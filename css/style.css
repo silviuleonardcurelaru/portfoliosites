@@ -356,6 +356,77 @@ h1, h2 {
   box-sizing: border-box;
 }
 
+.skills-carousel-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap:10px;
+  padding: 0;
+}
+
+/* Der eigentliche horizontale Slider */
+.skills-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 15px 5px;
+  /* Blendet die Standard-Scrollleiste aus */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.skills-slider::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Vertikale Skill-Cards */
+.skill-card {
+  position: relative;
+  flex:0 0 180px;
+  height: 240px;     /* Vertikale Höhe für Hochformat */
+  perspective: 1000px;
+  cursor: pointer;
+
+}
+
+/* Pfeil-Buttons */
+.carousel-btn {
+  position: static;          /* Aufheben der absoluten Positionierung */
+  transform: none;
+  background-color: #2b572e; /* Dunkleres Grün für guten Kontrast */
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;            /* Verhindert Stauchen des Buttons */
+  z-index: 10;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.08);
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
 .skill-front {
   background-color: rgb(66 203 68 / 0.82);
   color: white;

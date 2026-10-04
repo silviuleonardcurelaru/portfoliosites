@@ -11,6 +11,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  function setupSlider(sliderId,prevBtnId,nextBtnId) {
+    const slider = document.getElementById(sliderId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    if (slider && prevBtn && nextBtn) {
+      // Scrollt bei Klick um 220px (Kartenbreite + Abstand)
+      nextBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: 220, behavior: "smooth" });
+      });
+
+      prevBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: -220, behavior: "smooth" });
+      });
+    }
+  }
+    setupSlider("skillsSlider1","prevBtn1","nextBtn1");
+    setupSlider("skillsSlider2","prevBtn2","nextBtn2");
+  });
+
+
 const ngrok = require("@ngrok/ngrok");
 
 async function forwardToApp() {
