@@ -54,113 +54,136 @@
   <section id="projects">
     <h1>Das sind <span class="highlight">Meine Projekte</span></h1>
     <div class="project-grid">
-      <article class="project-card">
-        <h3>Kleiner Taschenrechner</h3>
-        <p>Erstellt ursprünglich mit Tkinter, angepasst für die Webanzeige.</p>
+    <article class="project-card">
+      <h3>Taschenrechner</h3>
+      <p>Erstellt mit Tkinter (Python) -
+        <a href="https://github.com/silviuleonardcurelaru/expensecalculation/tree/main/calculatorgui">Zum Repository</a> </p>
+      <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+      <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
-        <!-- PyScript im Head oder vor dem Element einbinden -->
-        <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+      <style>
+        .calculator-wrapper {
+          display: flex;
+          justify-content: center;
+          padding: 20px 0;
+        }
+        .calculator {
+          background: rgb(66 203 68 / 0.82);
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+          width: 320px;
+        }
+        #entry {
+          width: 100%;
+          height: 50px;
+          font-size: 24px;
+          text-align: center;
+          margin-bottom: 12px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-sizing: border-box;
+        }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .top-row { grid-template-columns: repeat(3, 1fr); margin-bottom: 8px; }
+        .calculator button {
+          font-size: 18px;
+          padding: 15px;
+          border: 1px solid #ddd;
+          background: #e0e0e0;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .calculator button:hover { background: #b4d3b0; }
+        .btn-op { background: #ffeaa7; }
+        .btn-action { background: #fab1a0; }
+        .btn-eq { background: rgb(95 168 97 / 0.82); }
+      </style>
 
-        <!-- Gehäuse des Rechners -->
-        <div style="width: 320px; margin: 30px auto; background-color: rgb(95 168 97 / 0.82); padding: 20px; border-radius: 12px; box-shadow: 0 8px 24px rgb(135 224 137 / 0.82); font-family: Arial, sans-serif;">
+      <div class="calculator">
+        <!-- Das 'Entry' aus deinem Tkinter Code -->
+        <input type="text" id="entry" readonly>
 
-          <!-- Display oben -->
-          <input type="text" id="calc-display" readonly placeholder="0"
-                 style="width: 100%; height: 60px; background-color: #343333; color: #50fa7b; font-size: 28px; text-align: right; padding: 10px 15px; border: 1px solid #333; border-radius: 6px; box-sizing: border-box; margin-bottom: 15px; outline: none;">
-
-          <!-- Tastenfeld als strukturierte HTML-Tabelle -->
-          <table style="width: 100%; border-collapse: separate; border-spacing: 8px;">
-            <!-- Zeile 1: Spezialtasten -->
-            <tr>
-              <td><button onclick="calcAction('clear')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">C</button></td>
-              <td><button onclick="calcAction('sqrt')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">√</button></td>
-              <td><button onclick="calcAction('pow2')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">x²</button></td>
-              <td><button onclick="calcAction('close')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">x</button></td>
-            </tr>
-
-            <!-- Zeile 2: 7 8 9 / -->
-            <tr>
-              <td style="width:25%;"><button onclick="calcAction('7')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(52 51 51); color:white; cursor:pointer;">7</button></td>
-              <td style="width:25%;"><button onclick="calcAction('8')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(52 51 51); color:white; cursor:pointer;">8</button></td>
-              <td style="width:25%;"><button onclick="calcAction('9')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(52 51 51); color:white; cursor:pointer;">9</button></td>
-              <td style="width:25%;"><button onclick="calcAction('/')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">/</button></td>
-            </tr>
-
-            <!-- Zeile 3: 4 5 6 * -->
-            <tr>
-              <td><button onclick="calcAction('4')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#343333; color:white; cursor:pointer;">4</button></td>
-              <td><button onclick="calcAction('5')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#343333; color:white; cursor:pointer;">5</button></td>
-              <td><button onclick="calcAction('6')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#343333; color:white; cursor:pointer;">6</button></td>
-              <td><button onclick="calcAction('*')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">*</button></td>
-            </tr>
-
-            <!-- Zeile 4: 1 2 3 - -->
-            <tr>
-              <td><button onclick="calcAction('1')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#3c4043; color:white; cursor:pointer;">1</button></td>
-              <td><button onclick="calcAction('2')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#3c4043; color:white; cursor:pointer;">2</button></td>
-              <td><button onclick="calcAction('3')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#3c4043; color:white; cursor:pointer;">3</button></td>
-              <td><button onclick="calcAction('-')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">-</button></td>
-            </tr>
-
-            <!-- Zeile 5: 0 . = + -->
-            <tr>
-              <td><button onclick="calcAction('0')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#3c4043; color:white; cursor:pointer;">0</button></td>
-              <td><button onclick="calcAction('.')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:#3c4043; color:white; cursor:pointer;">.</button></td>
-              <td><button onclick="calcAction('=')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">=</button></td>
-              <td><button onclick="calcAction('+')" style="width:100%; height:55px; font-size:20px; font-weight:bold; border:none; border-radius:6px; background-color:rgb(66 203 68 / 0.82); color:white; cursor:pointer;">+</button></td>
-            </tr>
-          </table>
+        <!-- Obere Zusatz-Buttons (C, √, x²) -->
+        <div class="grid top-row">
+          <button class="btn-action" py-click="clear">C</button>
+          <button class="btn-action" py-click="squareroot">√</button>
+          <button class="btn-action" py-click="powerto2">x²</button>
         </div>
 
-        <!-- Python Logik für den Rechner -->
-        <script type="mpy">
-          from pyscript import window
-          from pyodide.ffi import create_proxy
-          import math
+        <!-- Haupt-Tastenfeld -->
+        <div class="grid">
+          <button onclick="btn_click('7')">7</button>
+          <button onclick="btn_click('8')">8</button>
+          <button onclick="btn_click('9')">9</button>
+          <button class="btn-op" onclick="btn_click('/')">/</button>
 
-          class WebCalculator:
-              def __init__(self):
-                  self.display = window.document.getElementById("calc-display")
+          <button onclick="btn_click('4')">4</button>
+          <button onclick="btn_click('5')">5</button>
+          <button onclick="btn_click('6')">6</button>
+          <button class="btn-op" onclick="btn_click('*')">*</button>
 
-              def handle_action(self, action):
-                  current = self.display.value
+          <button onclick="btn_click('1')">1</button>
+          <button onclick="btn_click('2')">2</button>
+          <button onclick="btn_click('3')">3</button>
+          <button class="btn-op" onclick="btn_click('-')">-</button>
 
-                  if action == "close":
-                      self.display.value = ""
-                  elif action == "clear":
-                      self.display.value = ""
-                  elif action == "=":
-                      try:
-                          self.display.value = str(eval(current))
-                      except Exception:
-                          self.display.value = "Fehler"
-                  elif action == "sqrt":
-                      try:
-                          self.display.value = str(math.sqrt(float(current)))
-                      except Exception:
-                          self.display.value = "Fehler"
-                  elif action == "pow2":
-                      try:
-                          self.display.value = str(math.pow(float(current), 2))
-                      except Exception:
-                          self.display.value = "Fehler"
-                  else:
-                      self.display.value = current + str(action)
+          <button onclick="btn_click('0')">0</button>
+          <button onclick="btn_click('.')">.</button>
+          <button class="btn-eq" py-click="calculate">=</button>
+          <button class="btn-op" onclick="btn_click('+')">+</button>
+        </div>
+      </div>
 
-          calc = WebCalculator()
+      <script type="py">
+        import math
+        from pyscript import document
 
-          def on_btn_click(val):
-              calc.handle_action(val)
+        # Greift auf das HTML-Eingabefeld zu
+        entry = document.querySelector("#entry")
 
-          window.calcAction = create_proxy(on_btn_click)
-        </script>
+        def button_click(value):
+            entry.value = entry.value + str(value)
+
+        def calculate(event=None):
+            try:
+                result = eval(entry.value)
+                entry.value = str(result)
+            except Exception:
+                entry.value = "Fehler"
+
+        def squareroot(event=None):
+            try:
+                value = float(entry.value)
+                result = math.sqrt(value)
+                entry.value = str(result)
+            except Exception:
+                entry.value = "Fehler"
+
+        def powerto2(event=None):
+            try:
+                value = float(entry.value)
+                result = math.pow(value, 2)
+                entry.value = str(result)
+            except Exception:
+                entry.value = "Fehler"
+
+        def clear(event=None):
+            entry.value = ""
+
+        # Hilfsfunktion für Button-Klicks aus JavaScript
+        from js import window
+        window.btn_click = button_click
+      </script>
+
 
       </article>
+
       <article class="project-card">
         <h3>Portfolio Webseite</h3>
-        <p>Erstellt mit HTML5 Boilerplate und IntelliJ.</p>
-        <a href=https://github.com/silviuleonardcurelaru/portfoliosites>Diese Webseite ist auch ein Projekt :)</a>
+        <p>Erstellt mit HTML5 Boilerplate und IntelliJ. -
+          <a href=https://github.com/silviuleonardcurelaru/portfoliosites>Zum Repository</a></p>
       </article>
     </div>
   </section>
