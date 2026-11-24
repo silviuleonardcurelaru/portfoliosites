@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monatsbudget</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">MyPortfolio</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="portfoliosite/about.html" class="nav-link">Über mich</a></li>
+        <li><a href="portfoliosite/skills.html" class="nav-link">Kenntnisse</a></li>
+        <li><a href="portfoliosite/projects.html" class="nav-link">Projekte</a></li>
+        <li><a href="portfoliosite/index.html" class="nav-link">Zur Startseite</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<main class="container">
+  <header class="header">
+    <h1>Monatsbudget</h1>
+    <input type="month" id="monthPicker" />
+  </header>
+
+  <section class="summary">
+    <div class="card">
+      <span>Einnahmen</span>
+      <strong id="totalIncome">0,00 €</strong>
+    </div>
+    <div class="card">
+      <span>Ausgaben</span>
+      <strong id="totalExpense">0,00 €</strong>
+    </div>
+    <div class="card">
+      <span>Restbudget</span>
+      <strong id="balance">0,00 €</strong>
+    </div>
+  </section>
+
+  <section class="charts-grid">
+    <div class="chart-card">
+      <h2>Ausgaben nach Kategorie</h2>
+      <div class="canvas-wrapper">
+        <canvas id="expensePieChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Einnahmen nach Kategorie</h2>
+      <div class="canvas-wrapper">
+        <canvas id="incomePieChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Jahresübersicht Einnahmen</h2>
+      <div class="canvas-wrapper">
+        <canvas id="monthlyBarChartIncome"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Jahresübersicht Ausgaben</h2>
+      <div class="canvas-wrapper">
+        <canvas id="monthlyBarChartExpense"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Neuer Eintrag</h2>
+    <form id="budgetForm">
+      <select id="type" aria-label="Art">
+        <option value="expense">Ausgabe</option>
+        <option value="income">Einnahme</option>
+      </select>
+      <select id="category" aria-label="Kategorie">
+        <option value="Wohnen">Wohnen</option>
+        <option value="Lebensmittel">Lebensmittel</option>
+        <option value="Mobilität">Mobilität</option>
+        <option value="Freizeit">Freizeit</option>
+        <option value="Abos">Abos</option>
+        <option value="Vereine">Vereine</option>
+        <option value="Gehalt">Gehalt</option>
+        <option value="Vermieten">Vermieten</option>
+        <option value="Sonstiges">Sonstiges</option>
+      </select>
+      <input type="text" id="title" placeholder="z. B. Miete, Gehalt, Einkauf" required />
+      <input type="number" id="amount" step="0.01" min="0.01" placeholder="Betrag (€)" required />
+      <button type="submit">Hinzufügen</button>
+    </form>
+  </section>
+
+  <section class="list-section">
+    <h2>Buchungen</h2>
+    <ul id="entryList"></ul>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="budgetapp.js"></script>
+</body>
+</html>

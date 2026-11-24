@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: linear-gradient(to right, rgb(66 203 68 / 0.82), rgb(173 211 173 / 0.82), rgb(66 203 68 / 0.82));
+  color: #000000;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgb(135 224 137 / 0.82);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.card span {
+  display: block;
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.card strong {
+  font-size: 1.35rem;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.chart-card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #334155;
+}
+
+.canvas-wrapper {
+  position: relative;
+  height: 240px;
+  width: 100%;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 125px 145px 1fr 130px auto;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+input, select, button {
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+}
+
+select:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.list-section {
+  margin-top: 1.5rem;
+}
+
+ul {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.entry-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.amount-income {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.amount-expense {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.delete-btn {
+  background: transparent;
+  color: #64748b;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+@media (max-width: 720px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}
